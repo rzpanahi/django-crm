@@ -10,6 +10,16 @@
             <a class="nav-link" href="{% url "home" %}">Home</a>
           </li>
         </ul>
+        {% if user.is_authenticated %}
+          <div class="d-flex">
+            <form action="{% url "logout" %}" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-danger">
+                logout
+              </button>
+            </form>
+          </div>
+        {% endif %}
       </div>
     </div>
   </nav>

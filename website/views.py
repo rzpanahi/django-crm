@@ -25,4 +25,9 @@ def home(request):
 
 
 def logout_user(request):
-    pass
+    if request.method == "POST":
+        logout(request)
+        messages.success(request, "You have been logged out.")
+        return redirect("home")
+    else:
+        messages.success("Error with logging out")
