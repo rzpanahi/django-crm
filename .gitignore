@@ -55,7 +55,7 @@ var/
 *.manifest
 *.spec
 
-# Installer logs
+# Installer logsusername
 pip-log.txt
 pip-delete-this-directory.txt
 
@@ -89,3 +89,6 @@ db.sqlite3
 crm/lib64
 crm/bin
 crm/lib
+
+### vs code ###
+.vscode
