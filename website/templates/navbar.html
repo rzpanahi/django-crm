@@ -19,6 +19,14 @@
               </button>
             </form>
           </div>
+        {% else %}
+        <div class="d-flex">
+          <button class="btn btn-info">
+            <a href="{% url "register" %}" style="text-decoration: none; color: black;">
+              Register
+            </a>
+          </button>
+        </div>
         {% endif %}
       </div>
     </div>
