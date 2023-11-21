@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import RegisterForm
-
+from .models import Record 
 
 def home(request):
+    records = Record.objects.all()
+
     if request.method == "POST":
         # user is not logged in
         username = request.POST["username"]
@@ -22,7 +24,7 @@ def home(request):
 
     elif request.method == "GET":
         # user is logged in
-        return render(request, "home.html", {})
+        return render(request, "home.html", { 'records': records})
 
 
 def logout_user(request):
