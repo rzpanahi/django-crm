@@ -33,7 +33,7 @@ def logout_user(request):
         messages.success(request, "You have been logged out.")
         return redirect("home")
     else:
-        messages.success("Error with logging out")
+        messages.success(request, "Error with logging out")
 
 
 def register_user(request):
@@ -56,3 +56,7 @@ def register_user(request):
         return render(request, "register.html", { 'form': form })
 
     return render(request, "register.html", { 'form': form })
+
+
+def customer_record(request, pk):
+    record = get_object_or_404(Record, pk=pk)
