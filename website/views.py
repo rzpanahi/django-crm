@@ -59,4 +59,14 @@ def register_user(request):
 
 
 def customer_record(request, pk):
-    record = get_object_or_404(Record, pk=pk)
+    if not request.user.is_authenticated:
+        messages.success(request, "You must be logged in")
+        return redirect('home')
+
+    customer_record = Record.objects.get(id=pk)
+     
+    if not customer_record:
+        messages.success(request, "No record found!")
+        return render(request, "record.html", {})
+    
+    return render(request, "record.html", { "customer_record": customer_record })

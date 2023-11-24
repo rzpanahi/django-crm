@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<br>
+<div class="col-md-6 offset-md-3">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <b>{{customer_record.first_name}} {{ customer_record.last_name}}</b>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email: {{ customer_record.email}}</li>
+            <li class="list-group-item">Phone: {{ customer_record.phone}}</li>
+            <li class="list-group-item">Address: {{ customer_record.address}}</li>
+            <li class="list-group-item">City: {{ customer_record.city}}</li>
+            <li class="list-group-item">State: {{ customer_record.state}}</li>
+            <li class="list-group-item">Zipcode: {{ customer_record.zipcode}}</li>
+        </ul>
+    </div>
+    <br>
+    <button class="btn btn-info">Edit</button>
+    <button class="btn btn-danger">Delete</button>
+</div>
+
+{% endblock %}

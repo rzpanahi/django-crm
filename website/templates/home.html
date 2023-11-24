@@ -11,6 +11,7 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">#</th>
+					<th scope="col">Details</th>
 					<th scope="col">First Name</th>
 					<th scope="col">Last Name</th>
 					<th scope="col">Email</th>
@@ -26,6 +27,7 @@
 				{% for record in records %}
 					<tr>
 						<th scope="row">{{ record.id }}</th>
+                    <td><a href="{% url 'record' record.id %}"><button class="btn btn-info btn-sm">Details</button></a></td>
 						<td>{{ record.first_name}}</td>
 						<td>{{ record.last_name}}</td>
 						<td>{{ record.email}}</td>
@@ -47,7 +49,6 @@
             {% csrf_token %}
             <div class="mb-3">
               <input type="text" class="form-control" name="username" placeholder="username">
-              {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
             </div>
             <div class="mb-3">
               <input type="password" class="form-control" name="password" placeholder="password">
