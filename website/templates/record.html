@@ -17,8 +17,8 @@
         </ul>
     </div>
     <br>
-    <button class="btn btn-info">Edit</button>
-    <button class="btn btn-danger">Delete</button>
+    <a href="{% url 'home' %}" class="btn btn-info">Back</a>
+    <a href="{% url 'delete' customer_record.id %}" class="btn btn-danger">Delete</a>
 </div>
 
 {% endblock %}
