@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import RegisterForm
+from .forms import AddRecordForm, RegisterForm
 from .models import Record 
 
 def home(request):
@@ -64,11 +64,11 @@ def customer_record(request, pk):
         return redirect('home')
 
     customer_record = Record.objects.get(id=pk)
-     
+
     if not customer_record:
         messages.success(request, "No record found!")
         return render(request, "record.html", {})
-    
+
     return render(request, "record.html", { "customer_record": customer_record })
 
 def delete_record(request, pk):
@@ -81,3 +81,22 @@ def delete_record(request, pk):
 
     messages.success(request, f"{record.first_name} {record.last_name} deleted successfully!")
     return redirect('home')
+
+
+def add_record(request):
+    if not request.user.is_authenticated:
+        messages.success(request, "You must be logged in")
+        return render(request, 'home.html', {})
+
+    if request.method == "GET":
+        form = AddRecordForm()
+        return render(request, "add.html", { 'form': form})
+
+    form = AddRecordForm(request.POST) 
+
+    if not form.is_valid():
+        return render(request, 'add.html', { 'form': form })
+
+    record = form.save()
+    messages.success(request, f"{record.first_name} {record.last_name} added successfully!",)
+    return redirect("home")
